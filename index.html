@@ -15,6 +15,10 @@
 </head>
 
 <body class="d-flex flex-column h-100">
+
+    <div id="lose">You lose!</div>
+    <div id="win">You win!</div>
+
     <header class="container">
         <div class="row">
             <h1 class="col-6">Guess the word</h1>
@@ -30,7 +34,6 @@
         <div class="row">
             <p class="text-muted col">world capital edition</p>
         </div>
-
     </header>
 
     <!-- // Main section -->
@@ -38,13 +41,13 @@
         <section id="guessTiles" class="container">
             <div id="conakry">
                 <div class="row capital justify-content-center">           
-                    <div class="CAns letterAnswer col"> C </div>
-                    <div class="OAns letterAnswer col"> O </div>
-                    <div class="NAns letterAnswer col"> N </div>
-                    <div class="AAns letterAnswer col"> A </div>
-                    <div class="KAns letterAnswer col"> K </div>
-                    <div class="RAns letterAnswer col"> R </div>
-                    <div class="YAns letterAnswer col"> Y </div>
+                    <div class="C letterAnswer col conakry"> C </div>
+                    <div class="O letterAnswer col conakry"> O </div>
+                    <div class="N letterAnswer col conakry"> N </div>
+                    <div class="A letterAnswer col conakry"> A </div>
+                    <div class="K letterAnswer col conakry"> K </div>
+                    <div class="R letterAnswer col conakry"> R </div>
+                    <div class="Y letterAnswer col conakry"> Y </div>
                 </div>
 
                 <div class="row capital justify-content-center">     
@@ -60,12 +63,12 @@
         
             <div id="tehran">
                 <div class="row capital justify-content-center">           
-                    <div class="TAns letterAnswer col"> T </div>
-                    <div class="EAns letterAnswer col"> E </div>
-                    <div class="HAns letterAnswer col"> H </div>
-                    <div class="RAns letterAnswer col"> R </div>
-                    <div class="AAns letterAnswer col"> A </div>
-                    <div class="NAns letterAnswer col"> N </div> 
+                    <div class="T tehran letterAnswer col"> T </div>
+                    <div class="E letterAnswer col tehran"> E </div>
+                    <div class="H letterAnswer col tehran"> H </div>
+                    <div class="R letterAnswer col tehran"> R </div>
+                    <div class="A letterAnswer col tehran"> A </div>
+                    <div class="N letterAnswer col tehran"> N </div> 
                 </div>
         
                 <div class="row capital justify-content-center">     
@@ -82,36 +85,36 @@
 
         <section id="lettersUsed" class="container">
             <div class="row">
-                <div class="letterUsed col-md-1 col-sm-2 A" id="A"> A </div>
-                <div class="letterUsed col-md-1 col-sm-2 B" id="B"> B </div>
-                <div class="letterUsed col-md-1 col-sm-2 C" id="C"> C </div>
-                <div class="letterUsed col-md-1 col-sm-2 D" id="D"> D </div>
-                <div class="letterUsed col-md-1 col-sm-2 E" id="E"> E </div>
-                <div class="letterUsed col-md-1 col-sm-2 F" id="F"> F </div>
-                <div class="letterUsed col-md-1 col-sm-2 G" id="G"> G </div>
-                <div class="letterUsed col-md-1 col-sm-2 H" id="H"> H </div>
-                <div class="letterUsed col-md-1 col-sm-2 I" id="I"> I </div>
-                <div class="letterUsed col-md-1 col-sm-2 J" id="J"> J </div>
+                <div class="letterUsed col-md-1 col-sm-2" id="A"> A </div>
+                <div class="letterUsed col-md-1 col-sm-2" id="B"> B </div>
+                <div class="letterUsed col-md-1 col-sm-2" id="C"> C </div>
+                <div class="letterUsed col-md-1 col-sm-2" id="D"> D </div>
+                <div class="letterUsed col-md-1 col-sm-2" id="E"> E </div>
+                <div class="letterUsed col-md-1 col-sm-2" id="F"> F </div>
+                <div class="letterUsed col-md-1 col-sm-2" id="G"> G </div>
+                <div class="letterUsed col-md-1 col-sm-2" id="H"> H </div>
+                <div class="letterUsed col-md-1 col-sm-2" id="I"> I </div>
+                <div class="letterUsed col-md-1 col-sm-2" id="J"> J </div>
             </div>
             <div class="row">
-                <div class="letterUsed col-md-1 col-sm-2 K" id="K"> K </div>
-                <div class="letterUsed col-md-1 col-sm-2 L" id="L"> L </div>
-                <div class="letterUsed col-md-1 col-sm-2 M" id="M"> M </div>
-                <div class="letterUsed col-md-1 col-sm-2 N" id="N"> N </div>
-                <div class="letterUsed col-md-1 col-sm-2 O" id="O"> O </div>
-                <div class="letterUsed col-md-1 col-sm-2 P" id="P"> P </div>
-                <div class="letterUsed col-md-1 col-sm-2 Q" id="Q"> Q </div>
-                <div class="letterUsed col-md-1 col-sm-2 R" id="R"> R </div>
-                <div class="letterUsed col-md-1 col-sm-2 S" id="S"> S </div>
-                <div class="letterUsed col-md-1 col-sm-2 T" id="T"> T </div>          
+                <div class="letterUsed col-md-1 col-sm-2" id="K"> K </div>
+                <div class="letterUsed col-md-1 col-sm-2" id="L"> L </div>
+                <div class="letterUsed col-md-1 col-sm-2" id="M"> M </div>
+                <div class="letterUsed col-md-1 col-sm-2" id="N"> N </div>
+                <div class="letterUsed col-md-1 col-sm-2" id="O"> O </div>
+                <div class="letterUsed col-md-1 col-sm-2" id="P"> P </div>
+                <div class="letterUsed col-md-1 col-sm-2" id="Q"> Q </div>
+                <div class="letterUsed col-md-1 col-sm-2" id="R"> R </div>
+                <div class="letterUsed col-md-1 col-sm-2" id="S"> S </div>
+                <div class="letterUsed col-md-1 col-sm-2" id="T"> T </div>          
             </div>
             <div class="row">
-                <div class="letterUsed col-md-1 col-sm-2 U" id="U"> U </div>
-                <div class="letterUsed col-md-1 col-sm-2 V" id="V"> V </div>
-                <div class="letterUsed col-md-1 col-sm-2 W" id="W"> W </div>  
-                <div class="letterUsed col-md-1 col-sm-2 X" id="X"> X </div>
-                <div class="letterUsed col-md-1 col-sm-2 Y" id="Y"> Y </div>
-                <div class="letterUsed col-md-1 col-sm-2 Z" id="Z"> Z </div>  
+                <div class="letterUsed col-md-1 col-sm-2" id="U"> U </div>
+                <div class="letterUsed col-md-1 col-sm-2" id="V"> V </div>
+                <div class="letterUsed col-md-1 col-sm-2" id="W"> W </div>  
+                <div class="letterUsed col-md-1 col-sm-2" id="X"> X </div>
+                <div class="letterUsed col-md-1 col-sm-2" id="Y"> Y </div>
+                <div class="letterUsed col-md-1 col-sm-2" id="Z"> Z </div>  
             </div>      
         </section>
     </main>

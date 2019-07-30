@@ -14,7 +14,7 @@ body {
     font-family: 'Playfair Display', serif;
     color: #383838;
     font-size: 1.5em;
-}
+ }
 
 @media screen and (max-width: 640px){
     body {
@@ -66,6 +66,23 @@ h1, h2, h3 {
 
 /* Main Body Styles
 --------------------*/
+#lose, #win {
+    font-size: 5em;
+    position: absolute;
+    z-index: 999;
+    margin: 0 0 0 250px;
+    top: 30%;
+    color: #7FCAAC;
+}
+
+#lose {
+    visibility: hidden;
+}
+
+#win {
+    visibility: hidden;
+}
+
 #guessTiles {
     background: #ffffff;
     border: 1px solid #dddddd;
@@ -110,44 +127,44 @@ h1, h2, h3 {
     color: #92623B;
 }
 
-.CAns { visibility: hidden; }
-.OAns { visibility: hidden; }
-.NAns { visibility: hidden; }
-.AAns { visibility: hidden; }
-.KAns { visibility: hidden; }
-.RAns { visibility: hidden; }
-.TAns { visibility: hidden; }
-.EAns { visibility: hidden; }
-.HAns { visibility: hidden; }
-.YAns { visibility: hidden; }
+.C { visibility: hidden; }
+.O { visibility: hidden; }
+.N { visibility: hidden; }
+.A { visibility: hidden; }
+.K { visibility: hidden; }
+.R { visibility: hidden; }
+.T { visibility: hidden; }
+.E { visibility: hidden; }
+.H { visibility: hidden; }
+.Y { visibility: hidden; }
 
 
-.A { visibility: visible; }
-.B { visibility: visible; }
-.C { visibility: visible; }
-.D { visibility: visible; }
-.E { visibility: visible; }
-.F { visibility: visible; }
-.G { visibility: visible; }
-.H { visibility: visible; }
-.I { visibility: visible; }
-.J { visibility: visible; }
-.K { visibility: visible; }
-.L { visibility: visible; }
-.M { visibility: visible; }
-.N { visibility: visible; }
-.O { visibility: visible; }
-.P { visibility: visible; }
-.Q { visibility: visible; }
-.R { visibility: visible; }
-.S { visibility: visible; }
-.T { visibility: visible; }
-.U { visibility: visible; }
-.V { visibility: visible; }
-.W { visibility: visible; }
-.X { visibility: visible; }
-.Y { visibility: visible; }
-.Z { visibility: hvisible; }
+#A { visibility: visible; }
+#B { visibility: visible; }
+#C { visibility: visible; }
+#D { visibility: visible; }
+#E { visibility: visible; }
+#F { visibility: visible; }
+#G { visibility: visible; }
+#H { visibility: visible; }
+#I { visibility: visible; }
+#J { visibility: visible; }
+#K { visibility: visible; }
+#L { visibility: visible; }
+#M { visibility: visible; }
+#N { visibility: visible; }
+#O { visibility: visible; }
+#P { visibility: visible; }
+#Q { visibility: visible; }
+#R { visibility: visible; }
+#S { visibility: visible; }
+#T { visibility: visible; }
+#U { visibility: visible; }
+#V { visibility: visible; }
+#W { visibility: visible; }
+#X { visibility: visible; }
+#Y { visibility: visible; }
+#Z { visibility: visible; }
 
 
 /* Footer styles

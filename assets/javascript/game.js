@@ -33,27 +33,60 @@
 //    * Remember: global variables, then objects, then calls.
 
 
-alert("Click a letter to get started!"); 
+// alert("Click a letter to get started!"); 
 
-var letterUsed = document.getElementsByClassName("letterUsed");
+var score, guesses;
 
+var DOMScore = document.getElementById("score");
+
+init();
+
+document.querySelector("#lettersUsed").addEventListener("click", clickedLetters);
+
+function clickedLetters(event) {
+    var letter = event.target.id;
+    var solution = document.querySelector(".tehran." + letter); 
+    
+    // console.log(letter);
+    // console.log(solution);
+          
 // cross out letter clicked
-
-Object.entries(letterUsed).map((object) => {console.log(object)});
-
-function listenLetter(position) {
-    letterUsed[position].addEventListener("click", function(){
-    this.style.textDecoration = "line-through";
-    })
-};
-
-for (var i = 0; i < 26; i++) { listenLetter(i); }
-
-// OR when you click on the letter, you get the letter id, story in "used letters" array that gets strike through decoration
-
+    document.getElementById(letter).style.textDecoration = "line-through";
 
  // if letter clicked matches letter hidden in solution then display ALL matching hidden letters, increase score by number of letters revealed, and reduce guesses remaining by one
 
- // else reduce score by 1, and reduce guess by 1
+ if(solution) {
+     solution.style.visibility = "visible";
+     score += 1;
+     DOMScore.textContent = score;
+     lessGuess();
+ }  else {
+    score -= 1;
+    DOMScore.textContent = score;
+    lessGuess();
+ }
+ }
+
+function init() {
+    score = 0;
+    guesses = 8;
+    DOMScore.textContent = "0";
+    document.getElementById("guesses").textContent = "8";
+}
+
+function lessGuess() {
+    if (guesses <= 1) {
+        document.getElementById("lose").style.visibility = "visible";
+    }
+    else {
+        guesses -= 1;
+        document.getElementById("guesses").textContent = guesses;
+    }    
+}
+ 
+
+
+
+
 
 
