@@ -1,0 +1,164 @@
+/* Color Palette
+    Blue #7FCAAC
+    Yellow #F3BF2A
+    Brown #92623B
+    Gray #383838
+ 
+*/
+
+/* Global Styles
+--------------------*/
+body {
+    background-image: url('../images/az_subtle.png');
+    background-repeat: repeat;
+    font-family: 'Playfair Display', serif;
+    color: #383838;
+    font-size: 1.5em;
+}
+
+@media screen and (max-width: 640px){
+    body {
+        font-size: 1em;
+    }
+    #guessTiles {
+        width: 100%;
+        margin: 2px;
+    }
+}
+
+header {
+    margin: 50px 20px 0px 75px;
+    padding: 15px 15px 5px 15px;
+    color: #7FCAAC;
+}
+
+.score-container {
+    font-size: 0.75em;
+    float: left;
+    text-align: center;
+    margin: 5px;
+    color: #92623B; 
+    height: 10%;  
+}
+
+#guesses {
+    background-color: #ffffff;
+}
+
+#score {
+    background-color: #ffffff;
+}
+
+/* Heading tags
+---------------*/
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 2.5em;
+    color: #92623B; 
+}
+
+h1, h2, h3 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* Main Body Styles
+--------------------*/
+#guessTiles {
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    padding: 50px 10px;
+    height: 200px;
+}
+
+
+@media screen and (min-width: 641px) {
+    #guessTiles {
+    margin: 20px auto;
+    }
+}
+
+.letterAnswer {
+   text-align: center;
+   font-weight: 600;
+   
+}
+
+.dash {
+    font: 3em;
+    font-weight: 600;
+    margin-top: -2%;
+    text-align: center;
+}
+
+#tehran {
+    visibility: visible;
+}
+
+#conakry {
+    visibility: hidden;
+}
+
+.letterUsed {
+    background-color: #ffffff;
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+    font-size: 1.5em; 
+    color: #92623B;
+}
+
+.CAns { visibility: hidden; }
+.OAns { visibility: hidden; }
+.NAns { visibility: hidden; }
+.AAns { visibility: hidden; }
+.KAns { visibility: hidden; }
+.RAns { visibility: hidden; }
+.TAns { visibility: hidden; }
+.EAns { visibility: hidden; }
+.HAns { visibility: hidden; }
+.YAns { visibility: hidden; }
+
+
+.A { visibility: visible; }
+.B { visibility: visible; }
+.C { visibility: visible; }
+.D { visibility: visible; }
+.E { visibility: visible; }
+.F { visibility: visible; }
+.G { visibility: visible; }
+.H { visibility: visible; }
+.I { visibility: visible; }
+.J { visibility: visible; }
+.K { visibility: visible; }
+.L { visibility: visible; }
+.M { visibility: visible; }
+.N { visibility: visible; }
+.O { visibility: visible; }
+.P { visibility: visible; }
+.Q { visibility: visible; }
+.R { visibility: visible; }
+.S { visibility: visible; }
+.T { visibility: visible; }
+.U { visibility: visible; }
+.V { visibility: visible; }
+.W { visibility: visible; }
+.X { visibility: visible; }
+.Y { visibility: visible; }
+.Z { visibility: hvisible; }
+
+
+/* Footer styles
+--------------------*/
+footer {
+    background: #666666;
+    border-top: 8px solid #7FCAAC;
+    color: #ffffff;
+    font-size: 0.5em;
+    text-align: center;
+    height: 5%;
+    padding-bottom: 5px;
+}
+

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Word Game</title>
+    <!--// google fonts and font awesome stylesheet-->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!--// bootstrap stylesheet-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--// author stylesheet-->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="d-flex flex-column h-100">
+    <header class="container">
+        <div class="row">
+            <h1 class="col-6">Guess the word</h1>
+            <div class="score-container col-2">
+                <div>Score</div>
+                <div id="score">0</div>
+            </div>
+            <div class="score-container col-2">
+                <div>Guesses remaining</div>
+                <div id="guesses">15</div>
+            </div>
+        </div>
+        <div class="row">
+            <p class="text-muted col">world capital edition</p>
+        </div>
+
+    </header>
+
+    <!-- // Main section -->
+    <main class="flex-shrink-0"> 
+        <section id="guessTiles" class="container">
+            <div id="conakry">
+                <div class="row capital justify-content-center">           
+                    <div class="CAns letterAnswer col"> C </div>
+                    <div class="OAns letterAnswer col"> O </div>
+                    <div class="NAns letterAnswer col"> N </div>
+                    <div class="AAns letterAnswer col"> A </div>
+                    <div class="KAns letterAnswer col"> K </div>
+                    <div class="RAns letterAnswer col"> R </div>
+                    <div class="YAns letterAnswer col"> Y </div>
+                </div>
+
+                <div class="row capital justify-content-center">     
+                    <div class="dash col"> _ </div>
+                    <div class="dash col"> _ </div>
+                    <div class="dash col"> _ </div>
+                    <div class="dash col"> _ </div>
+                    <div class="dash col"> _ </div>
+                    <div class="dash col"> _ </div>
+                    <div class="dash col"> _ </div>
+                </div>  
+            </div>  
+        
+            <div id="tehran">
+                <div class="row capital justify-content-center">           
+                    <div class="TAns letterAnswer col"> T </div>
+                    <div class="EAns letterAnswer col"> E </div>
+                    <div class="HAns letterAnswer col"> H </div>
+                    <div class="RAns letterAnswer col"> R </div>
+                    <div class="AAns letterAnswer col"> A </div>
+                    <div class="NAns letterAnswer col"> N </div> 
+                </div>
+        
+                <div class="row capital justify-content-center">     
+                    <div class="dash col"> _ </div>
+                    <div class="dash col"> _ </div>
+                    <div class="dash col"> _ </div>
+                    <div class="dash col"> _ </div>
+                    <div class="dash col"> _ </div>
+                    <div class="dash col"> _ </div>                   
+                </div>  
+            </div>
+
+        </section>
+
+        <section id="lettersUsed" class="container">
+            <div class="row">
+                <div class="letterUsed col-md-1 col-sm-2 A" id="A"> A </div>
+                <div class="letterUsed col-md-1 col-sm-2 B" id="B"> B </div>
+                <div class="letterUsed col-md-1 col-sm-2 C" id="C"> C </div>
+                <div class="letterUsed col-md-1 col-sm-2 D" id="D"> D </div>
+                <div class="letterUsed col-md-1 col-sm-2 E" id="E"> E </div>
+                <div class="letterUsed col-md-1 col-sm-2 F" id="F"> F </div>
+                <div class="letterUsed col-md-1 col-sm-2 G" id="G"> G </div>
+                <div class="letterUsed col-md-1 col-sm-2 H" id="H"> H </div>
+                <div class="letterUsed col-md-1 col-sm-2 I" id="I"> I </div>
+                <div class="letterUsed col-md-1 col-sm-2 J" id="J"> J </div>
+            </div>
+            <div class="row">
+                <div class="letterUsed col-md-1 col-sm-2 K" id="K"> K </div>
+                <div class="letterUsed col-md-1 col-sm-2 L" id="L"> L </div>
+                <div class="letterUsed col-md-1 col-sm-2 M" id="M"> M </div>
+                <div class="letterUsed col-md-1 col-sm-2 N" id="N"> N </div>
+                <div class="letterUsed col-md-1 col-sm-2 O" id="O"> O </div>
+                <div class="letterUsed col-md-1 col-sm-2 P" id="P"> P </div>
+                <div class="letterUsed col-md-1 col-sm-2 Q" id="Q"> Q </div>
+                <div class="letterUsed col-md-1 col-sm-2 R" id="R"> R </div>
+                <div class="letterUsed col-md-1 col-sm-2 S" id="S"> S </div>
+                <div class="letterUsed col-md-1 col-sm-2 T" id="T"> T </div>          
+            </div>
+            <div class="row">
+                <div class="letterUsed col-md-1 col-sm-2 U" id="U"> U </div>
+                <div class="letterUsed col-md-1 col-sm-2 V" id="V"> V </div>
+                <div class="letterUsed col-md-1 col-sm-2 W" id="W"> W </div>  
+                <div class="letterUsed col-md-1 col-sm-2 X" id="X"> X </div>
+                <div class="letterUsed col-md-1 col-sm-2 Y" id="Y"> Y </div>
+                <div class="letterUsed col-md-1 col-sm-2 Z" id="Z"> Z </div>  
+            </div>      
+        </section>
+    </main>
+
+    <!-- // Footer -->
+    <footer class="mt-auto">
+        <p>Copyright &copy</p>
+    </footer>
+
+<script src="assets/javascript/game.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>
