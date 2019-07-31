@@ -24,6 +24,11 @@ body {
         width: 100%;
         margin: 2px;
     }
+
+    .letterUsed {
+        font-size: 1.5em;
+        width: 20%;
+    }
 }
 
 header {
@@ -66,13 +71,20 @@ h1, h2, h3 {
 
 /* Main Body Styles
 --------------------*/
+.fa-globe {
+    font-size: 1.5em;
+    color: #F3BF2A;
+}
+
 #lose, #win {
     font-size: 5em;
     position: absolute;
     z-index: 999;
-    margin: 0 0 0 250px;
+    margin: 5% auto;
     top: 30%;
     color: #7FCAAC;
+    width: 100%;
+    text-align: center;
 }
 
 #lose {
@@ -95,7 +107,8 @@ h1, h2, h3 {
     #guessTiles {
     margin: 20px auto;
     }
-}
+
+  }
 
 .letterAnswer {
    text-align: center;
@@ -125,6 +138,12 @@ h1, h2, h3 {
     text-align: center;
     font-size: 1.5em; 
     color: #92623B;
+}
+
+button {
+    background-color: #7FCAAC; 
+    margin-left: 40%;   
+    margin-top: 5%;
 }
 
 .C { visibility: hidden; }

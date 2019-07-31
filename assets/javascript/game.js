@@ -35,55 +35,91 @@
 
 // alert("Click a letter to get started!"); 
 
-var score, guesses;
+var score, guesses, item;
 
 var DOMScore = document.getElementById("score");
 
+var next = ["tehran", "conakry"]
+
+var letterUsedList = document.getElementById("lettersUsed").querySelectorAll(".letterUsed");
+var letterAnswerList = document.getElementById("guessTiles").querySelectorAll(".letterAnswer");
+var tehranList = document.getElementById(next[0]).querySelectorAll(".letterAnswer");
+
 init();
 
-document.querySelector("#lettersUsed").addEventListener("click", clickedLetters);
+document.querySelector("#lettersUsed").addEventListener("click", function(event) {
+    if(gamePlaying) {
+        var letter = event.target.id;
+        var solution = document.querySelector("." + next[item] + "." + letter); 
+            
+    // cross out letter clicked
+        document.getElementById(letter).style.textDecoration = "line-through";
 
-function clickedLetters(event) {
-    var letter = event.target.id;
-    var solution = document.querySelector(".tehran." + letter); 
-    
-    // console.log(letter);
-    // console.log(solution);
-          
-// cross out letter clicked
-    document.getElementById(letter).style.textDecoration = "line-through";
+    // if letter clicked matches letter hidden in solution then display ALL matching hidden letters, increase score by number of letters revealed, and reduce guesses remaining by one
 
- // if letter clicked matches letter hidden in solution then display ALL matching hidden letters, increase score by number of letters revealed, and reduce guesses remaining by one
+        if(solution) {
+            solution.style.visibility = "visible";
+            score += 1;
+            DOMScore.textContent = score;
+            // tehranCheck();            
+            lessGuess();
+        }  else {
+            score -= 1;
+            DOMScore.textContent = score;
+            lessGuess();
+        }
+    }
+ });
 
- if(solution) {
-     solution.style.visibility = "visible";
-     score += 1;
-     DOMScore.textContent = score;
-     lessGuess();
- }  else {
-    score -= 1;
-    DOMScore.textContent = score;
-    lessGuess();
- }
- }
+
+document.querySelector(".btn-new").addEventListener("click", init);
 
 function init() {
     score = 0;
     guesses = 8;
     DOMScore.textContent = "0";
-    document.getElementById("guesses").textContent = "8";
+    document.getElementById("guesses").textContent = "8";    
+    gamePlaying = true;  
+    for (var i = 0; i < letterUsedList.length; i++) {
+        letterUsedList[i].style.textDecoration = null;
+    };
+    for (var j = 0; j < letterAnswerList.length; j++) {
+        letterAnswerList[j].style.visibility = "hidden";
+    };   
+    document.getElementById("lose").style.visibility = "hidden";
+    document.getElementById("win").style.visibility = "hidden";
+    item = 0;
 }
 
 function lessGuess() {
     if (guesses <= 1) {
         document.getElementById("lose").style.visibility = "visible";
+        gamePlaying = false;        
     }
     else {
         guesses -= 1;
         document.getElementById("guesses").textContent = guesses;
     }    
 }
+
+// function nextWord() {
+//     for (var i = 0; i < next.length; i++) {
+//         next[i] += 1;
+//     }
+// }
  
+// function tehranCheck() {
+//     if (
+//         tehranList[0].style.visibility = "visible" &&
+//         tehranList[1].style.visibility = "visible" &&
+//         tehranList[2].style.visibility = "visible" &&
+//         tehranList[3].style.visibility = "visible" &&
+//         tehranList[4].style.visibility = "visible" &&
+//         tehranList[5].style.visibility = "visible"
+//     ) {
+//         return item += 1;
+//     };
+
 
 
 
