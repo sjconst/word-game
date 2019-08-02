@@ -9,32 +9,24 @@
 /* Global Styles
 --------------------*/
 body {
-    background-image: url('../images/az_subtle.png');
-    background-repeat: repeat;
+    background-image: url('../images/Img1.jpg'); /* Photo by Toa Heftiba on Unsplash */
+    background-repeat: round;
     font-family: 'Playfair Display', serif;
     color: #383838;
-    font-size: 1.5em;
+    font-size: 1.75em;
  }
 
-@media screen and (max-width: 640px){
-    body {
-        font-size: 1em;
-    }
-    #guessTiles {
-        width: 100%;
-        margin: 2px;
-    }
-
-    .letterUsed {
-        font-size: 1.5em;
-        width: 20%;
-    }
-}
+#world {
+    font-family: 'Dancing Script', cursive;
+    transform: rotate(-7deg);
+    color: #7FCAAC; 
+ }
 
 header {
     margin: 50px 20px 0px 75px;
     padding: 15px 15px 5px 15px;
-    color: #7FCAAC;
+    color: rgb(137, 103, 192);
+    background-color: rgba(255, 255, 255, 0.75);
 }
 
 .score-container {
@@ -42,7 +34,7 @@ header {
     float: left;
     text-align: center;
     margin: 5px;
-    color: #92623B; 
+    color: #383838; 
     height: 10%;  
 }
 
@@ -54,26 +46,11 @@ header {
     background-color: #ffffff;
 }
 
-/* Heading tags
----------------*/
-h1 {
-    font-size: 2.5em;
-}
-
-h2 {
-    font-size: 2.5em;
-    color: #92623B; 
-}
-
-h1, h2, h3 {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}
-
 /* Main Body Styles
 --------------------*/
 .fa-globe {
-    font-size: 1.5em;
-    color: #F3BF2A;
+    font-size: 1.25em;
+    color: #F3BF2A;    
 }
 
 #lose, #win {
@@ -100,15 +77,8 @@ h1, h2, h3 {
     border: 1px solid #dddddd;
     padding: 50px 10px;
     height: 200px;
+    position: relative;
 }
-
-
-@media screen and (min-width: 641px) {
-    #guessTiles {
-    margin: 20px auto;
-    }
-
-  }
 
 .letterAnswer {
    text-align: center;
@@ -121,15 +91,42 @@ h1, h2, h3 {
     font-weight: 600;
     margin-top: -2%;
     text-align: center;
-}
+ }
 
 #tehran {
     visibility: visible;
 }
 
+#tehran, #conakry, #pristina, #belmopan, #bangui, #helsinki {
+    position: absolute;
+    width: 100%;
+}
+
 #conakry {
     visibility: hidden;
+    position: absolute;
 }
+
+#pristina {
+    visibility: hidden;
+    position: absolute;
+}
+
+#bangui{
+    visibility: hidden;
+    position: absolute;
+}
+
+#belmopan {
+    visibility: hidden;
+    position: absolute;
+}
+
+#helsinki {
+    visibility: hidden;
+    position: absolute;
+} 
+
 
 .letterUsed {
     background-color: #ffffff;
@@ -143,47 +140,39 @@ h1, h2, h3 {
 button {
     background-color: #7FCAAC; 
     margin-left: 40%;   
-    margin-top: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding: 10px;
 }
 
-.C { visibility: hidden; }
-.O { visibility: hidden; }
-.N { visibility: hidden; }
-.A { visibility: hidden; }
-.K { visibility: hidden; }
-.R { visibility: hidden; }
-.T { visibility: hidden; }
-.E { visibility: hidden; }
-.H { visibility: hidden; }
-.Y { visibility: hidden; }
+.A { visibility: hidden; } .B { visibility: hidden; }
+.C { visibility: hidden; } .D { visibility: hidden; }
+.E { visibility: hidden; } .F { visibility: hidden; }
+.G { visibility: hidden; } .H { visibility: hidden; }
+.I { visibility: hidden; } .J { visibility: hidden; }
+.K { visibility: hidden; } .L { visibility: hidden; }
+.M { visibility: hidden; } .N { visibility: hidden; }
+.O { visibility: hidden; } .P { visibility: hidden; }
+.Q { visibility: hidden; } .R { visibility: hidden; }
+.S { visibility: hidden; } .T { visibility: hidden; }
+.U { visibility: hidden; } .V { visibility: hidden; }
+.W { visibility: hidden; } .X { visibility: hidden; }
+.Y { visibility: hidden; } .Z { visibility: hidden; }
 
 
-#A { visibility: visible; }
-#B { visibility: visible; }
-#C { visibility: visible; }
-#D { visibility: visible; }
-#E { visibility: visible; }
-#F { visibility: visible; }
-#G { visibility: visible; }
-#H { visibility: visible; }
-#I { visibility: visible; }
-#J { visibility: visible; }
-#K { visibility: visible; }
-#L { visibility: visible; }
-#M { visibility: visible; }
-#N { visibility: visible; }
-#O { visibility: visible; }
-#P { visibility: visible; }
-#Q { visibility: visible; }
-#R { visibility: visible; }
-#S { visibility: visible; }
-#T { visibility: visible; }
-#U { visibility: visible; }
-#V { visibility: visible; }
-#W { visibility: visible; }
-#X { visibility: visible; }
-#Y { visibility: visible; }
-#Z { visibility: visible; }
+#A { visibility: visible; } #B { visibility: visible; }
+#C { visibility: visible; } #D { visibility: visible; }
+#E { visibility: visible; } #F { visibility: visible; }
+#G { visibility: visible; } #H { visibility: visible; }
+#I { visibility: visible; } #J { visibility: visible; }
+#K { visibility: visible; } #L { visibility: visible; }
+#M { visibility: visible; } #N { visibility: visible; }
+#O { visibility: visible; } #P { visibility: visible; }
+#Q { visibility: visible; } #R { visibility: visible; }
+#S { visibility: visible; } #T { visibility: visible; }
+#U { visibility: visible; } #V { visibility: visible; }
+#W { visibility: visible; } #X { visibility: visible; }
+#Y { visibility: visible; } #Z { visibility: visible; }
 
 
 /* Footer styles
@@ -198,3 +187,39 @@ footer {
     padding-bottom: 5px;
 }
 
+/* Responsive styles
+------------------------*/
+
+@media screen and (min-width: 767px) {
+    #guessTiles {
+    margin: 20px auto;
+    }
+    h1 {
+        font-size: 1.5em;
+    }
+    #world {
+    font-size: 1.75em;
+    margin-top: -100px;
+    }
+  }
+
+  @media screen and (max-width: 766px){
+    body {
+        font-size: 0.75em;
+    }
+    #guessTiles {
+        width: 100%;
+        margin: 2px;
+    }
+
+    .letterUsed {
+        font-size: 1.5em;
+        width: 20%;
+    }
+    h1 {
+        font-size: 1.5em;
+    }
+    #world {
+        margin-top: -50px;
+    }
+}
