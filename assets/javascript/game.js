@@ -15,37 +15,74 @@
     var score, guesses, item; 
     var next = ["tehran", "conakry", "belmopan", "bangui", "helsinki", "pristina"]
 
-// objects
+//    var DOM = {
+//         score: document.getElementById("score"),
+//         guess: document.getElementById("guesses"),
+//         button: document.querySelector(".btn-new"),
+//         win: document.getElementById("win"),
+//         lose: document.getElementById("lose")
+//         }
 
-var DOM = {
-    score: document.getElementById("score"),
-    guess: document.getElementById("guesses"),
-    button: document.querySelector(".btn-new"),
-    win: document.getElementById("win"),
-    lose: document.getElementById("lose")
-}
 
-var reset = {
-    letterUsedList: [].slice.call(document.getElementById("lettersUsed").querySelectorAll(".letterUsed")),
-    letterAnswerList: [].slice.call(document.getElementById("guessTiles").querySelectorAll(".letterAnswer")),
-    dashes: [].slice.call(document.getElementById("guessTiles").querySelectorAll(".dash")),
-    resetLetters:  function() {            
-        this.letterUsedList.forEach(function(element){
-            element.style.textDecoration = null;
-            });           
-        this.letterAnswerList.forEach(function(element){
-            element.style.visibility = "hidden";
-            });              
-        this.dashes.forEach(function(element){
-            element.style.visibility = "hidden";
-            });
+// UI Controller
+var UIController = (function() {
+
+    var DOM = {
+        score: document.getElementById("score"),
+        guess: document.getElementById("guesses"),
+        button: document.querySelector(".btn-new"),
+        win: document.getElementById("win"),
+        lose: document.getElementById("lose"),
+        lettersUsed: document.getElementById("lettersUsed"),
+        guessTiles: document.getElementById("guessTiles")
         }
-}
+    
+    var listLetters = {
+        letterUsedList: [].slice.call(DOM.lettersUsed.querySelectorAll(".letterUsed")),
+        letterAnswerList: [].slice.call(DOM.guessTiles.querySelectorAll(".letterAnswer")),
+        dashes: [].slice.call(DOM.guessTiles.querySelectorAll(".dash")),
+    }
+    
+    return { 
+                 
+        resetLetters:  function() {            
+                listLetters.letterUsedList.forEach(function(element){
+                    element.style.textDecoration = null;
+                    });           
+                listLetters.letterAnswerList.forEach(function(element){
+                    element.style.visibility = "hidden";
+                    });              
+                listLetters.dashes.forEach(function(element){
+                    element.style.visibility = "hidden";
+                    });
+                },         
+                 
+        getInput: function(event) {
+                return {
+                    letter2: event.target.id
+                }
+            }, 
+        
+        getDOM: function() {
+            return DOM;
+            }
+        };           
+    })();
 
-//Add event listeners
+//Game controller
+var controller = (function(UICtrl) {
+
+    var DOMstrings = UICtrl.getDOM();
+
+    //Add event listeners
     document.querySelector("#lettersUsed").onclick = function(event) {
+        // game.userGuess(event)
         if(gamePlaying) {
             var letter = event.target.id;
+            console.log(letter);
+            var letter3 = UICtrl.getInput(event);
+            console.log(letter3);
+            
             var solution = document.querySelector("." + next[item] + "." + letter);     
             var allSolution = [].slice.call(document.querySelectorAll("." + next[item] + "." + letter)); 
                   
@@ -61,7 +98,7 @@ var reset = {
                     element.style.visibility = "visible";
                     });             
                 score += 1;                
-                DOM.score.textContent = score; 
+                DOMstrings.score.textContent = score; 
 
                 // check if word guessed. If it is, next word
                 if (wordList.every(isComplete)) {
@@ -75,14 +112,16 @@ var reset = {
             }  else {
                 // reduce score by one, take away point from displayed score, take away from remaining guesses
                 score -= 1;                
-                DOM.score.textContent = score;
+                DOMstrings.score.textContent = score;
                 lessGuess();
             }
         }
     };
+}) (UIController); 
+
 
     // if new game button clicked, start over
-    DOM.button.onclick = init;
+    document.querySelector(".btn-new").onclick = init;
 
 
 //Functions used 
@@ -92,24 +131,24 @@ var reset = {
         score = 0;
         guesses = 8;
         item = 0;
-        DOM.score.textContent = "0";
-        DOM.guess.textContent = "8";   
-        reset.resetLetters(); 
+        document.getElementById("score").textContent = "0";
+        document.getElementById("guesses").textContent = "8";   
+        UIController.resetLetters(); 
         nextDash();        
         gamePlaying = true;  
-        DOM.lose.style.visibility = "hidden";
-        DOM.win.style.visibility = "hidden";       
+        document.getElementById("lose").style.visibility = "hidden";
+        document.getElementById("win").style.visibility = "hidden";       
     }
 
     // takes away remaining guesses, if no remaining guesses, diplays "you lose"
     function lessGuess() {
         if (guesses <= 1) {
-            DOM.lose.style.visibility = "visible";
+            document.getElementById("lose").style.visibility = "visible";
             gamePlaying = false;        
         }
         else {
             guesses -= 1;
-            DOM.guess.textContent = guesses;
+            document.getElementById("guesses").textContent = guesses;
         }    
     }
  
@@ -121,13 +160,13 @@ var reset = {
     // Next word
     function nextWord() {
         if (item < next.length - 1) {
-        reset.resetLetters();
+        UIController.resetLetters();
         item += 1; 
         nextDash();   
         guesses = 8;
-        DOM.guess.textContent = "8";
+        document.getElementById("guesses").textContent = "8";
         } else {
-            DOM.win.style.visibility = "visible";
+            document.getElementById("win").style.visibility = "visible";
             gamePlaying = false;
         }   
     };
