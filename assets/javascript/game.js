@@ -1,32 +1,15 @@
-
-// 1. Play a sound or song when the user guesses their word correctly, like in our demo.
-
-// 3. **HARD MODE:** Organize your game code as an object, except for the key events to get the letter guessed. This will be a challenge if you haven't coded with JavaScript before, but we encourage anyone already familiar with the language to try this out.
-// 4. Save your whole game and its properties in an object.
-// 5. Save any of your game's functions as methods, and call them underneath your object declaration using event listeners.
-// 6. Don't forget to place your global variables and functions above your object.
-//    * Remember: global variables, then objects, then calls.
-
 // ##### Word Guess Game 
 
-// alert("Click a letter to get started!"); 
+alert("Click a letter to get started!"); 
 
-// Declare and set global variables
-    var score, guesses, item; 
-    var next = ["tehran", "conakry", "belmopan", "bangui", "helsinki", "pristina"]
+// Declare global variables
+var score, guesses;
 
-//    var DOM = {
-//         score: document.getElementById("score"),
-//         guess: document.getElementById("guesses"),
-//         button: document.querySelector(".btn-new"),
-//         win: document.getElementById("win"),
-//         lose: document.getElementById("lose")
-//         }
+// UI CONTROLLER
 
-
-// UI Controller
 var UIController = (function() {
 
+    //private variables
     var DOM = {
         score: document.getElementById("score"),
         guess: document.getElementById("guesses"),
@@ -35,59 +18,114 @@ var UIController = (function() {
         lose: document.getElementById("lose"),
         lettersUsed: document.getElementById("lettersUsed"),
         guessTiles: document.getElementById("guessTiles")
-        }
+        };
     
+    var rounds = {
+        firstItem: 0,
+        round: [],
+        roundWord: ["tehran", "conakry", "belmopan", "bangui", "helsinki", "pristina"]
+        }; 
+
     var listLetters = {
         letterUsedList: [].slice.call(DOM.lettersUsed.querySelectorAll(".letterUsed")),
         letterAnswerList: [].slice.call(DOM.guessTiles.querySelectorAll(".letterAnswer")),
         dashes: [].slice.call(DOM.guessTiles.querySelectorAll(".dash")),
-    }
+        };
     
-    return { 
-                 
+    //public methods
+    return {                  
         resetLetters:  function() {            
-                listLetters.letterUsedList.forEach(function(element){
-                    element.style.textDecoration = null;
-                    });           
-                listLetters.letterAnswerList.forEach(function(element){
-                    element.style.visibility = "hidden";
-                    });              
-                listLetters.dashes.forEach(function(element){
-                    element.style.visibility = "hidden";
-                    });
-                },         
+                        listLetters.letterUsedList.forEach(function(element){
+                            element.style.textDecoration = null;
+                            });           
+                        listLetters.letterAnswerList.forEach(function(element){
+                            element.style.visibility = "hidden";
+                            });              
+                        listLetters.dashes.forEach(function(element){
+                            element.style.visibility = "hidden";
+                            });
+                        },      
+                        
+        nextWord: function() {
+            if (rounds.firstItem < rounds.roundWord.length - 1) {
+                this.resetLetters();                       
+                rounds.firstItem += 1;                     
+                this.nextDash();   
+                guesses = 8;
+                DOM.guess.textContent = "8";
+                } else {
+                    DOM.win.style.visibility = "visible";
+                    gamePlaying = false;
+                }   
+            },
+
+        nextDash:   function() { 
+                    var firstDash = [].slice.call(document.getElementById(rounds.roundWord[rounds.firstItem]).querySelectorAll(".dash"));
+                    firstDash.forEach(function(element){
+                        element.style.visibility = "visible";       
+                        })
+                    },   
                  
-        getInput: function(event) {
-                return {
-                    letter2: event.target.id
-                }
-            }, 
+        // getInput: function(event) {
+        //         return {
+        //             letter2: event.target.id
+        //             }
+        //         }, 
         
         getDOM: function() {
-            return DOM;
-            }
+                return DOM;
+                },
+        
+        getRounds: function(){
+                return rounds;
+            },
+            
+        lessGuess:  function() {
+                    if (guesses <= 1) {
+                        DOM.lose.style.visibility = "visible";
+                        gamePlaying = false;        
+                    }
+                    else {
+                        guesses -= 1;
+                        DOM.guess.textContent = guesses;
+                        }    
+                    },
+
+        isComplete: function(element) { 
+                    return element.style.visibility === "visible";
+                    },   
+                            
+        
         };           
     })();
 
-//Game controller
+// GAME CONTROLLER
+
 var controller = (function(UICtrl) {
 
     var DOMstrings = UICtrl.getDOM();
+    var roundDetail = UICtrl.getRounds();
 
-    //Add event listeners
-    document.querySelector("#lettersUsed").onclick = function(event) {
-        // game.userGuess(event)
+    //Initialize function, sets scores to 0, guesses to 8, hides solution letters, un-crosses out letters 
+    var setupInit = function () {           
+        score = 0;
+        guesses = 8;
+        DOMstrings.score.textContent = "0";
+        DOMstrings.guess.textContent = "8";   
+        UICtrl.resetLetters(); 
+        UICtrl.nextDash();        
+        gamePlaying = true;  
+        DOMstrings.lose.style.visibility = "hidden";
+        DOMstrings.win.style.visibility = "hidden";       
+        };    
+    
+    var userGuess = function(event) {
         if(gamePlaying) {
-            var letter = event.target.id;
-            console.log(letter);
-            var letter3 = UICtrl.getInput(event);
-            console.log(letter3);
-            
-            var solution = document.querySelector("." + next[item] + "." + letter);     
-            var allSolution = [].slice.call(document.querySelectorAll("." + next[item] + "." + letter)); 
-                  
-            var wordList = [].slice.call(document.getElementById(next[item]).querySelectorAll(".letterAnswer"));
-                           
+            var letter = event.target.id;                                           
+            var solution = document.querySelector("." + roundDetail.roundWord[roundDetail.firstItem] + "." + letter);     
+            var allSolution = [].slice.call(document.querySelectorAll("." + roundDetail.roundWord[roundDetail.firstItem] + "." + letter));                         
+            var wordList = [].slice.call(document.getElementById(roundDetail.roundWord[roundDetail.firstItem]).querySelectorAll(".letterAnswer"));
+                        
         // cross out letter clicked
             document.getElementById(letter).style.textDecoration = "line-through";
 
@@ -101,11 +139,11 @@ var controller = (function(UICtrl) {
                 DOMstrings.score.textContent = score; 
 
                 // check if word guessed. If it is, next word
-                if (wordList.every(isComplete)) {
-                    nextWord();                    
+                if (wordList.every(UICtrl.isComplete)) {
+                    UICtrl.nextWord();                    
                 } else {
                     //if not, remove one remaining guess   
-                    lessGuess();
+                    UICtrl.lessGuess();
                 };         
             
         //if letter clicked doesn't match letter hidden in solution
@@ -113,97 +151,28 @@ var controller = (function(UICtrl) {
                 // reduce score by one, take away point from displayed score, take away from remaining guesses
                 score -= 1;                
                 DOMstrings.score.textContent = score;
-                lessGuess();
+                UICtrl.lessGuess();
             }
         }
-    };
+    };    
+    
+    // Setup event listeners
+    var setupEventListeners = function () {                    
+            DOMstrings.lettersUsed.onclick = userGuess;
+              
+            // if new game button clicked, start over
+            DOMstrings.button.onclick = setupInit;
+        }
+  
+    return {
+        eventListeners: function() {
+            setupEventListeners();
+        },
+        init: function() {
+            setupInit();
+        }
+    }; 
 }) (UIController); 
 
-
-    // if new game button clicked, start over
-    document.querySelector(".btn-new").onclick = init;
-
-
-//Functions used 
-
-    //Initialize function, sets scores to 0, guesses to 8, hides solution letters, un-crosses out letters
-    function init() {
-        score = 0;
-        guesses = 8;
-        item = 0;
-        document.getElementById("score").textContent = "0";
-        document.getElementById("guesses").textContent = "8";   
-        UIController.resetLetters(); 
-        nextDash();        
-        gamePlaying = true;  
-        document.getElementById("lose").style.visibility = "hidden";
-        document.getElementById("win").style.visibility = "hidden";       
-    }
-
-    // takes away remaining guesses, if no remaining guesses, diplays "you lose"
-    function lessGuess() {
-        if (guesses <= 1) {
-            document.getElementById("lose").style.visibility = "visible";
-            gamePlaying = false;        
-        }
-        else {
-            guesses -= 1;
-            document.getElementById("guesses").textContent = guesses;
-        }    
-    }
- 
-    //checks if all elements of an array are visible
-    function isComplete(element){ 
-        return element.style.visibility === "visible";
-    };
-
-    // Next word
-    function nextWord() {
-        if (item < next.length - 1) {
-        UIController.resetLetters();
-        item += 1; 
-        nextDash();   
-        guesses = 8;
-        document.getElementById("guesses").textContent = "8";
-        } else {
-            document.getElementById("win").style.visibility = "visible";
-            gamePlaying = false;
-        }   
-    };
-
-    //Next dash appears
-    function nextDash(){
-        var firstDash = [].slice.call(document.getElementById(next[item]).querySelectorAll(".dash"));
-        firstDash.forEach(function(element){
-            element.style.visibility = "visible";       
-        })
-    };
-
-//Initialize game
-init();
-
-
-
-
-// GRAVEYARD
-
-    // //Resets solution and keyboard letters 
-    // function resetLetters(){
-    //     //reset all letters used to un-crossed out
-    //     var letterUsedList = [].slice.call(document.getElementById("lettersUsed").querySelectorAll(".letterUsed"));
-    //     letterUsedList.forEach(function(element){
-    //         element.style.textDecoration = null;
-    //     })
-             
-    //     //hides ALL solution letters (from all countries)
-    //     var letterAnswerList = [].slice.call(document.getElementById("guessTiles").querySelectorAll(".letterAnswer"));
-    //     letterAnswerList.forEach(function(element){
-    //         element.style.visibility = "hidden";
-    //     })
-        
-    //     //hides dashes of all words
-    //     var dashes = [].slice.call(document.getElementById("guessTiles").querySelectorAll(".dash"));
-    //     dashes.forEach(function(element){
-    //         element.style.visibility = "hidden";
-    //     })
-    // };
+controller.eventListeners();
+controller.init();
