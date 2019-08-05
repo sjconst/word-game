@@ -15,8 +15,32 @@
     var score, guesses, item; 
     var next = ["tehran", "conakry", "belmopan", "bangui", "helsinki", "pristina"]
 
-// Initialize game
-init();
+// objects
+
+var DOM = {
+    score: document.getElementById("score"),
+    guess: document.getElementById("guesses"),
+    button: document.querySelector(".btn-new"),
+    win: document.getElementById("win"),
+    lose: document.getElementById("lose")
+}
+
+var reset = {
+    letterUsedList: [].slice.call(document.getElementById("lettersUsed").querySelectorAll(".letterUsed")),
+    letterAnswerList: [].slice.call(document.getElementById("guessTiles").querySelectorAll(".letterAnswer")),
+    dashes: [].slice.call(document.getElementById("guessTiles").querySelectorAll(".dash")),
+    resetLetters:  function() {            
+        this.letterUsedList.forEach(function(element){
+            element.style.textDecoration = null;
+            });           
+        this.letterAnswerList.forEach(function(element){
+            element.style.visibility = "hidden";
+            });              
+        this.dashes.forEach(function(element){
+            element.style.visibility = "hidden";
+            });
+        }
+}
 
 //Add event listeners
     document.querySelector("#lettersUsed").onclick = function(event) {
@@ -37,11 +61,10 @@ init();
                     element.style.visibility = "visible";
                     });             
                 score += 1;                
-                document.getElementById("score").textContent = score; 
+                DOM.score.textContent = score; 
 
                 // check if word guessed. If it is, next word
                 if (wordList.every(isComplete)) {
-                    console.log(item);
                     nextWord();                    
                 } else {
                     //if not, remove one remaining guess   
@@ -52,14 +75,14 @@ init();
             }  else {
                 // reduce score by one, take away point from displayed score, take away from remaining guesses
                 score -= 1;                
-                document.getElementById("score").textContent = score;
+                DOM.score.textContent = score;
                 lessGuess();
             }
         }
     };
 
     // if new game button clicked, start over
-    document.querySelector(".btn-new").onclick = init;
+    DOM.button.onclick = init;
 
 
 //Functions used 
@@ -69,24 +92,24 @@ init();
         score = 0;
         guesses = 8;
         item = 0;
-        document.getElementById("score").textContent = "0";
-        document.getElementById("guesses").textContent = "8";   
-        resetLetters(); 
+        DOM.score.textContent = "0";
+        DOM.guess.textContent = "8";   
+        reset.resetLetters(); 
         nextDash();        
         gamePlaying = true;  
-        document.getElementById("lose").style.visibility = "hidden";
-        document.getElementById("win").style.visibility = "hidden";       
+        DOM.lose.style.visibility = "hidden";
+        DOM.win.style.visibility = "hidden";       
     }
 
     // takes away remaining guesses, if no remaining guesses, diplays "you lose"
     function lessGuess() {
         if (guesses <= 1) {
-            document.getElementById("lose").style.visibility = "visible";
+            DOM.lose.style.visibility = "visible";
             gamePlaying = false;        
         }
         else {
             guesses -= 1;
-            document.getElementById("guesses").textContent = guesses;
+            DOM.guess.textContent = guesses;
         }    
     }
  
@@ -98,44 +121,50 @@ init();
     // Next word
     function nextWord() {
         if (item < next.length - 1) {
-        resetLetters();
+        reset.resetLetters();
         item += 1; 
         nextDash();   
         guesses = 8;
-        document.getElementById("guesses").textContent = "8";
+        DOM.guess.textContent = "8";
         } else {
-            document.getElementById("win").style.visibility = "visible";
+            DOM.win.style.visibility = "visible";
             gamePlaying = false;
         }   
     };
 
-    //Resets solution and keyboard letters 
-    function resetLetters(){
-        //reset all letters used to un-crossed out
-        var letterUsedList = [].slice.call(document.getElementById("lettersUsed").querySelectorAll(".letterUsed"));
-        letterUsedList.forEach(function(element){
-            element.style.textDecoration = null;
-        })
-             
-        //hides ALL solution letters (from all countries)
-        var letterAnswerList = [].slice.call(document.getElementById("guessTiles").querySelectorAll(".letterAnswer"));
-        letterAnswerList.forEach(function(element){
-            element.style.visibility = "hidden";
-        })
-        
-        //hides dashes of all words
-        var dashes = [].slice.call(document.getElementById("guessTiles").querySelectorAll(".dash"));
-        dashes.forEach(function(element){
-            element.style.visibility = "hidden";
-        })
-    };
-
     //Next dash appears
     function nextDash(){
-    var firstDash = [].slice.call(document.getElementById(next[item]).querySelectorAll(".dash"));
-    firstDash.forEach(function(element){
-        element.style.visibility = "visible";       
-    })
+        var firstDash = [].slice.call(document.getElementById(next[item]).querySelectorAll(".dash"));
+        firstDash.forEach(function(element){
+            element.style.visibility = "visible";       
+        })
     };
 
+//Initialize game
+init();
 
+
+
+
+// GRAVEYARD
+
+    // //Resets solution and keyboard letters 
+    // function resetLetters(){
+    //     //reset all letters used to un-crossed out
+    //     var letterUsedList = [].slice.call(document.getElementById("lettersUsed").querySelectorAll(".letterUsed"));
+    //     letterUsedList.forEach(function(element){
+    //         element.style.textDecoration = null;
+    //     })
+             
+    //     //hides ALL solution letters (from all countries)
+    //     var letterAnswerList = [].slice.call(document.getElementById("guessTiles").querySelectorAll(".letterAnswer"));
+    //     letterAnswerList.forEach(function(element){
+    //         element.style.visibility = "hidden";
+    //     })
+        
+    //     //hides dashes of all words
+    //     var dashes = [].slice.call(document.getElementById("guessTiles").querySelectorAll(".dash"));
+    //     dashes.forEach(function(element){
+    //         element.style.visibility = "hidden";
+    //     })
+    // };
