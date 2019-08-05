@@ -11,46 +11,38 @@
 
 // alert("Click a letter to get started!"); 
 
-/**** NOTE: letter tiles created for user to click on to display letters rather than typing letter on keyboard for mobile users */
-
 // Declare and set global variables
     var score, guesses, item; 
-    //list of words available
     var next = ["tehran", "conakry", "belmopan", "bangui", "helsinki", "pristina"]
 
-    init();
+// Initialize game
+init();
 
 //Add event listeners
-
-    document.querySelector("#lettersUsed").addEventListener("click", function(event) {
+    document.querySelector("#lettersUsed").onclick = function(event) {
         if(gamePlaying) {
-    
             var letter = event.target.id;
-            var solution = document.querySelector("." + next[item] + "." + letter); 
-            
-            // turns node list into array, so can be used with array.every call below
-            var tehranList = [].slice.call(document.getElementById(next[item]).querySelectorAll(".letterAnswer"));
+            var solution = document.querySelector("." + next[item] + "." + letter);     
+            var allSolution = [].slice.call(document.querySelectorAll("." + next[item] + "." + letter)); 
+                  
+            var wordList = [].slice.call(document.getElementById(next[item]).querySelectorAll(".letterAnswer"));
                            
         // cross out letter clicked
             document.getElementById(letter).style.textDecoration = "line-through";
 
         // if letter clicked matches letter hidden in solution
             if(solution) {
-                // display ALL matching hidden letters
-                solution.style.visibility = "visible";
-
-                //increase score by one
-                score += 1;
-
-                //add additional point to displayed score
+                // display ALL matching hidden letters, increase score by one, add additional point to displayed score
+                allSolution.forEach(function(element){
+                    element.style.visibility = "visible";
+                    });             
+                score += 1;                
                 document.getElementById("score").textContent = score; 
 
-                // check if word guessed. If it is, 
-                if (tehranList.every(isComplete)) {
-
-                    // next word
-                    nextWord();
-                    
+                // check if word guessed. If it is, next word
+                if (wordList.every(isComplete)) {
+                    console.log(item);
+                    nextWord();                    
                 } else {
                     //if not, remove one remaining guess   
                     lessGuess();
@@ -58,19 +50,16 @@
             
         //if letter clicked doesn't match letter hidden in solution
             }  else {
-                // reduce score by one
-                score -= 1;
-                // take away point from displayed score
+                // reduce score by one, take away point from displayed score, take away from remaining guesses
+                score -= 1;                
                 document.getElementById("score").textContent = score;
-
-                //take away from remaining guesses
                 lessGuess();
             }
         }
-    });
+    };
 
     // if new game button clicked, start over
-    document.querySelector(".btn-new").addEventListener("click", init);
+    document.querySelector(".btn-new").onclick = init;
 
 
 //Functions used 
@@ -108,12 +97,16 @@
 
     // Next word
     function nextWord() {
+        if (item < next.length - 1) {
         resetLetters();
         item += 1; 
         nextDash();   
         guesses = 8;
-        document.getElementById("guesses").textContent = "8";   
-        
+        document.getElementById("guesses").textContent = "8";
+        } else {
+            document.getElementById("win").style.visibility = "visible";
+            gamePlaying = false;
+        }   
     };
 
     //Resets solution and keyboard letters 
@@ -141,43 +134,8 @@
     function nextDash(){
     var firstDash = [].slice.call(document.getElementById(next[item]).querySelectorAll(".dash"));
     firstDash.forEach(function(element){
-        element.style.visibility = "visible";
-        console.log("Next dash working")
+        element.style.visibility = "visible";       
     })
     };
 
 
-
-/****GRAVEYARD */
-
-// function checkComplete() {
-//     if (
-//         tehranList[0].style.visibility === "visible" &&
-//         tehranList[1].style.visibility === "visible" &&
-//         tehranList[2].style.visibility === "visible" &&
-//         tehranList[3].style.visibility === "visible" &&
-//         tehranList[4].style.visibility === "visible" &&
-//         tehranList[5].style.visibility === "visible"
-//     ) {
-//         console.log("its complete!");
-//     }
-// };   
-
-// function newFunc(word1){
-//     // Foreach index in word1
-
-//     for (var i = 0; i < word1.length; i++) {
-//         // if some index is not visible
-//         if (word1[i].style.visibility === "hidden") {
-//             // return false (no need to keep checking)
-//             return false;
-//         } 
-//    }
-//    console.log("its working!")    
-//    // return True (you've made it to the end of the loop without returning so therefore
-//                 //  everything is visible)
-//    return true;          
-   
-// }
-
-    
