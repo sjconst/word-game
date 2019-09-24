@@ -1,6 +1,6 @@
 # Stephanie's word game
 
-Play this interactive word game to guess capital cities from around the world. Can you beat the clock?
+Play this interactive word game to guess capital cities from around the world. 
 
 ![wordgame](https://user-images.githubusercontent.com/42453320/65535398-2ce30380-deb6-11e9-9878-016275aab4e7.JPG)
 
