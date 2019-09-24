@@ -2,7 +2,7 @@
 
 Play this interactive word game to guess capital cities from around the world. 
 
-![wordgame](https://user-images.githubusercontent.com/42453320/65535398-2ce30380-deb6-11e9-9878-016275aab4e7.JPG)
+![wordGame](https://user-images.githubusercontent.com/42453320/65537413-045d0880-deba-11e9-9dab-9c76b14de928.JPG)
 
 ## Getting Started
 
